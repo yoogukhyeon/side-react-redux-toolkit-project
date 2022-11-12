@@ -5,12 +5,14 @@ import { Col, Row, Typography } from 'antd';
 const { Title} = Typography;
 
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+  console.log("coinHistory ::::::", coinHistory)
+
   const coinPrice = [];
   const coinTimestamp = [];
 
 
   for(let i = 0; i < coinHistory?.data?.history?.length; i++){
-    coinPrice.push(coinHistory?.data?.history[i]?.close);
+    coinPrice.push(coinHistory?.data?.history[i]?.price);
     coinTimestamp.push(new Date(coinHistory?.data?.history[i]?.timestamp).toLocaleDateString());
   };
 
@@ -28,16 +30,12 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   };
 
   const options = {
-    scales : {
-        yAxes : [
-            {
-                ticks : {
-                    beginAtZero : true
-                }
-            }
-        ]
-    }
-  }
+    scales: {
+      y: {
+        beginAtZero: true,
+      }
+    },
+  };
 
   return (
     <>
